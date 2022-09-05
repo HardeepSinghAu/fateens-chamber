@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import {React, useState, useEffect} from 'react';
 import Quiz from "./Quiz";
 import Berries from "./Berries";
+import Contact from "./Contact";
 
 function LoadingPage() {
   return (<h1>Loading... 🔮</h1>);
@@ -24,6 +25,7 @@ function MainPage() {
       <Secrets />
       <Quiz />
       <Berries />
+      <Contact />
       <Footer title={"Visit again."} description={"Whatever your problem may be, my fortune-telling shall lead to the solution."} />
     </div>
   );

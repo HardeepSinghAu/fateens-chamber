@@ -29,7 +29,6 @@ class Quiz extends React.Component {
   }
 
   render() {
-    const isComplete = false;
     return (
       <div id="quiz">
         <h1>
@@ -41,7 +40,7 @@ class Quiz extends React.Component {
 
         {/* <QuestionPage questionNumber={this.state.number} /> */}
 
-        {isComplete ? (
+        {this.state.number >= questions.length ? (
           <AnswerPage />
         ) : (
           <QuestionPage questionNumber={this.state.number} incrementNumber={this.incrementNumber} />
