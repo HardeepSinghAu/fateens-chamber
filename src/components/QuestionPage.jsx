@@ -49,7 +49,7 @@ class QuestionPage extends React.Component {
   getRandomEmoji() {
     const randomEmojis = ["👺", "🐣", "🦋", "🚳", "🌮", "🔮", "🎒"];
     let randomIndex = Math.floor(Math.random() * randomEmojis.length);
-    console.log("getRandomEmoji=", randomEmojis[randomIndex]);
+    // console.log("getRandomEmoji=", randomEmojis[randomIndex]);
     return randomEmojis[randomIndex];
   }
 
@@ -62,7 +62,7 @@ class QuestionPage extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("4. componentDidUpdate");
+    // console.log("4. componentDidUpdate");
     let randomEmoji = this.getRandomEmoji();
     if (prevState.emoji !== randomEmoji) {
       this.setState({
@@ -115,6 +115,7 @@ class QuestionPage extends React.Component {
             <RadioGroup onChange={this.handleRadioChange}>
               {radioOptions.map((e) => (
                 <FormControlLabel
+                  key={e.value}
                   value={e.value}
                   control={<Radio />}
                   label={e.label}

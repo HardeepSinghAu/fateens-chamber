@@ -1,4 +1,3 @@
-// import SimpleHome from "./SimpleHome";
 import About from "./About";
 import Location from "./Location";
 import Reviews from "./Reviews";
@@ -7,9 +6,34 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {React, useState, useEffect} from 'react';
 import Quiz from "./Quiz";
-import Berries from "./Berries";
-import Contact from "./Contact";
+import ContactHook from "./ContactHook";
+import BerriesHook from "./BerriesHook";
+import Container from "@mui/material/Container";
+import NavBar from "./NavBar";
 
+const sections = [
+  {
+    title: "About", url:"#about"
+  },
+  {
+    title: "Location", url:"#location"
+  },
+  {
+    title: "Reviews", url:"#reviews"
+  },
+  {
+    title: "Secrets", url:"#secrets"
+  },
+  {
+    title: "Would you like to know your fate?", url:"#quiz"
+  },
+  {
+    title: "🍓Berries🫐", url:"#berries"
+  },
+  {
+    title: "Contact", url:"#contact"
+  }
+];
 function LoadingPage() {
   return (<h1>Loading... 🔮</h1>);
 }
@@ -17,15 +41,19 @@ function LoadingPage() {
 function MainPage() {
   return (
     <div className="App">
-      {/* <SimpleHome/> */}
+      <Container maxWidth='lg'>
+        <NavBar title="Fateen's Fortune-Telling Chamber" sections={sections}></NavBar>
+      </Container>
+
+
       <Header />
       <About />
       <Location />
       <Reviews />
       <Secrets />
       <Quiz />
-      <Berries />
-      <Contact />
+      <BerriesHook />
+      <ContactHook />
       <Footer title={"Visit again."} description={"Whatever your problem may be, my fortune-telling shall lead to the solution."} />
     </div>
   );
