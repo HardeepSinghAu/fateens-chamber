@@ -1,3 +1,5 @@
+// Class component version
+
 import React from "react";
 
 const initialBerries = [

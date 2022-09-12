@@ -1,3 +1,5 @@
+// Functional component version
+
 import React, { useState, useEffect } from "react";
 
 const initialBerries = [
