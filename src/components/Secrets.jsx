@@ -28,7 +28,6 @@ const Secrets = () => {
     <section id="secrets">
       <div>
         <h2>Secrets</h2>
-        <a href="#top">Top</a>
       </div>
       <h3>Here you will find my secret discounts and events just for you!</h3>
         

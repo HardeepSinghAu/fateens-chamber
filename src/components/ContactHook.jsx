@@ -2,33 +2,53 @@
 
 import React, { useReducer } from "react";
 import reducer from "./utils/ContactReducer";
-
+import MessageCard from "./MessageCard";
+import ColourChoicePanel from "./ColourChoicePanel";
+import { useNavigate } from "react-router-dom";
 
 function ContactHook() {
+  let navigate = useNavigate();
+
   //const [contactFormData, setContactFormData] = useState(initialContactFormData);
 
   const initialState = {
     name: "",
     message: "",
     email: "",
-    userMessage: ""
-  }
+    userMessage: "",
+    textColour: "#f0f8ff",
+    cardColour: "#000000",
+  };
 
   const [store, dispatch] = useReducer(reducer, initialState);
-  const {name, message, email, userMessage} = store;
+  const { name, message, email, userMessage, textColour, cardColour } = store;
 
   function handleOnChange(event) {
     dispatch({
       type: "setFormData",
-      data: event.target
-    })
+      data: event.target,
+    });
   }
 
-  function setUserMessage(userMessage){
+  function setUserMessage(userMessage) {
     dispatch({
-      type: 'setUserMessage',
-      data: userMessage
-    })
+      type: "setUserMessage",
+      data: userMessage,
+    });
+  }
+
+  function setTextColour(colour) {
+    dispatch({
+      type: "setTextColour",
+      data: colour,
+    });
+  }
+
+  function setCardColour(colour) {
+    dispatch({
+      type: "setCardColour",
+      data: colour,
+    });
   }
 
   function handleSubmit(event) {
@@ -41,12 +61,11 @@ function ContactHook() {
       setUserMessage("Email must be provided.");
     } else if (!isNaN(parseInt(message))) {
       setUserMessage("Message must not be a number.");
-    } else if (
-      message.toLowerCase().split(" ").join("").includes("moist")
-    ) {
+    } else if (message.toLowerCase().split(" ").join("").includes("moist")) {
       setUserMessage("Please refrain from such language.");
     } else {
-      setUserMessage("All is okay!");
+      //setUserMessage("All is okay!");
+      navigate("/thanks");
     }
   }
 
@@ -54,7 +73,6 @@ function ContactHook() {
     <section id="contact">
       <div>
         <h2>Contact</h2>
-        <a href="#top">Top</a>
       </div>
       <h3>Contact me!</h3>
 
@@ -85,20 +103,30 @@ function ContactHook() {
             value={email}
             onChange={handleOnChange}
           ></input>
-          <button onClick={handleSubmit}>Submit</button>
         </form>
-
-        <p style={{ color: "blue" }}>
-          <b>{userMessage}</b>
-        </p>
       </div>
 
       <div>
         <h4>This is what you have entered:</h4>
-        <p>Name: {name}</p>
-        <p>Message: {message}</p>
-        <p>Email: {email}</p>
+        <MessageCard
+          name={name}
+          message={message}
+          email={email}
+          textColour={textColour}
+          cardColour={cardColour}
+        />
+        <ColourChoicePanel
+          textColour={textColour}
+          cardColour={cardColour}
+          setTextColour={setTextColour}
+          setCardColour={setCardColour}
+        />
       </div>
+
+      <p style={{ color: "blue" }}>
+        <b>{userMessage}</b>
+      </p>
+      <button onClick={handleSubmit}>Submit</button>
     </section>
   );
 }

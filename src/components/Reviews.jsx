@@ -76,7 +76,6 @@ const Reviews = () => {
     <section id="reviews">
       <div>
         <h2>Reviews</h2>
-        <a href="#top">Top</a>
       </div>
       <h3>Reviews from my customers!</h3>
       <ul>

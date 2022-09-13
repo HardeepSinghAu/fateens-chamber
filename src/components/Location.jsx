@@ -4,7 +4,6 @@ const Location = () => (
   <section id="location">
     <div>
       <h2>Location</h2>
-      <a href="#top">Top</a>
     </div>
     <h3>I am in Pyrite Town Orre!</h3>
     <ul>

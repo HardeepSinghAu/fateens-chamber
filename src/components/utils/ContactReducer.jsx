@@ -12,6 +12,18 @@ export default function reducer(state, action){
                 userMessage: action.data
             }
         }
+        case 'setTextColour': {
+            return {
+                ...state,
+                textColour: action.data
+            }
+        }
+        case 'setCardColour': {
+            return {
+                ...state,
+                cardColour: action.data
+            }
+        }
         default: return state
     }
 }

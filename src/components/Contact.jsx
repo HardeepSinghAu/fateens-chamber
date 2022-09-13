@@ -79,9 +79,8 @@ class Contact extends React.Component {
       <section id="contact">
         <div>
           <h2>Contact</h2>
-          <a href="#top">Top</a>
         </div>
-        <h3>Contact me!</h3>
+        <h3>Write me a card!</h3>
 
         <div>
           <form>

@@ -1,5 +1,5 @@
 // Functional component version
-
+import {Link} from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 const initialBerries = [
@@ -88,7 +88,7 @@ const BerriesHook = () => {
       <input type="text" onChange={handleOnChange}></input>
       <ul>
         {getFilteredBerries().map((berry, index) => {
-          return <li key={index}>{berry}</li>;
+          return <li key={index}><Link to={berry}>{berry}</Link></li>;
         })}
       </ul>
 
