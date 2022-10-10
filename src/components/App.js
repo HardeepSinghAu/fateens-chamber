@@ -4,7 +4,9 @@ import Reviews from "./Reviews";
 import Secrets from "./Secrets";
 // import Header from "./Header";
 import Footer from "./Footer";
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useReducer } from "react";
+import { StateContext } from "./utils/StateContext";
+import { getPredictions } from "../services/predictionServices";
 import Quiz from "./Quiz";
 import ContactHook from "./ContactHook";
 import BerriesHook from "./BerriesHook";
@@ -15,36 +17,42 @@ import Home from "./Home";
 import NotFound from "./NotFound";
 import ThankYouPage from "./ThankYouPage";
 import JustBerry from "./JustBerry";
+import reducer from "./utils/StateReducer";
+import Predictions from "./Predictions";
 
 const sections = [
   {
     title: "About",
-    url: "about",
+    url: "/about",
   },
   {
     title: "Location",
-    url: "location",
+    url: "/location",
   },
   {
     title: "Reviews",
-    url: "reviews",
+    url: "/reviews",
   },
   {
     title: "Secrets",
-    url: "secrets",
+    url: "/secrets",
   },
   {
     title: "Would you like to know your fate?",
-    url: "quiz",
+    url: "/quiz",
   },
   {
     title: "🍓Berries🫐",
-    url: "berries",
+    url: "/berries",
   },
   {
     title: "Contact",
-    url: "contact",
+    url: "/contact",
   },
+  {
+    title: "Predictions",
+    url: "/predictions"
+  }
 ];
 function LoadingPage() {
   return <h1>Loading... 🔮</h1>;
@@ -81,7 +89,8 @@ function MainPage() {
         <Route path="berries" element={<BerriesHook />} />
         <Route path="contact" element={<ContactHook />} />
         <Route path="thanks" element={<ThankYouPage />} />
-        <Route path="berries/:name" element={<JustBerry />}/>
+        <Route path="berries/:name" element={<JustBerry />} />
+        <Route path="predictions" element={<Predictions />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
@@ -96,7 +105,21 @@ function MainPage() {
 }
 
 function App() {
+  const initialState = {
+    predictions: [],
+    loggedInUser: null,
+    auth: null,
+  };
+  const [store, dispatch] = useReducer(reducer, initialState);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getPredictions()
+      .then((predictions) =>
+        dispatch({ type: "setPredictions", data: predictions })
+      )
+      .catch((error) => console.log(error));
+  }, []);
 
   // useEffect Hook is like componentDidMount, componentDidUpdate
   // we use it so that when page is updated we can load for 2 secs
@@ -109,7 +132,13 @@ function App() {
     }
   });
 
-  return isLoading ? <LoadingPage /> : <MainPage />;
+  return (
+    <div>
+      <StateContext.Provider value={{ store, dispatch }}>
+        {isLoading ? <LoadingPage /> : <MainPage />}
+      </StateContext.Provider>
+    </div>
+  );
 }
 
 export default App;
