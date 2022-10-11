@@ -24,6 +24,7 @@ import PredictionDetails from "./PredictionDetails";
 import NewPrediction from "./NewPrediction";
 import Login from "./Login";
 import LoginBar from "./LoginBar";
+import NewUser from "./NewUser";
 
 const sections = [
   {
@@ -101,6 +102,7 @@ function MainPage() {
         <Route path="predictions/update/:id" element={<NewPrediction />} />
         <Route path="predictions/new" element={<NewPrediction />} />
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="/register" element={<NewUser/>}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
 
