@@ -120,8 +120,8 @@ function App() {
   const initialState = {
     categories: [],
     predictions: [],
-    loggedInUser: null,
-    auth: null,
+    loggedInUser: sessionStorage.getItem("user") || null,
+    auth: sessionStorage.getItem("token") || null,
   };
   const [store, dispatch] = useReducer(reducer, initialState);
   const [isLoading, setIsLoading] = useState(true);
