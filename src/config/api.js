@@ -2,7 +2,8 @@ import axios from 'axios';
 
 // Define an API
 const fateenAPI = axios.create({
-    baseURL: 'http://localhost:3000'
+    baseUrl: 'https://fateen-api-production.up.railway.app/'
+    // baseURL: 'http://localhost:3000'
 })
 
 fateenAPI.interceptors.request.use((req) => {
@@ -11,7 +12,7 @@ fateenAPI.interceptors.request.use((req) => {
         req.headers["Authorization"] = `Bearer ${token}`;
     }
     return req;
-    
+
 })
 
 export default fateenAPI;
