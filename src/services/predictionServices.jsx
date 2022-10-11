@@ -19,20 +19,17 @@ function transformPrediction(prediction) {
 
 export async function getPredictions() {
     const response = await fateenAPI.get('/api/predictions');
-    console.log(response)
     return response.data;
 }
 
 export async function getPrediction(id) {
     const response = await fateenAPI.get(`/api/predictions/${id}`);
     let prediction = response.data;
-    console.log("get prediction", prediction);
     return prediction ? transformPrediction(prediction) : null
 }
 
 export async function createPrediction(prediction) {
 	const response = await fateenAPI.post('/api/predictions', prediction);
-	console.log(response.data);
 	return response.data;
 }
 
