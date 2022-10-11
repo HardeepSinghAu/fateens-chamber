@@ -13,12 +13,12 @@ export default function PredictionDetails() {
 
   let navigate = useNavigate();
   const { id } = useParams();
-  const {store, dispatch} = useGlobalState();
+  const {dispatch} = useGlobalState();
 
   function handleDelete() {
     deletePrediction(id).then(() => {
       dispatch({ type: "deletePrediction", data: id });
-      navigate(-1);
+      navigate('/predictions');
     });
   }
 

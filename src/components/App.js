@@ -2,7 +2,6 @@ import About from "./About";
 import Location from "./Location";
 import Reviews from "./Reviews";
 import Secrets from "./Secrets";
-// import Header from "./Header";
 import Footer from "./Footer";
 import { React, useState, useEffect, useReducer } from "react";
 import { StateContext } from "../utils/StateContext"
@@ -67,16 +66,6 @@ function LoadingPage() {
 function MainPage() {
   return (
     <div className="App">
-      {/* <nav>
-      <Link to="/">Home</Link>|{" "}
-        <Link to="/about">About</Link>|{" "}
-        <Link to="/location">Location</Link>|{" "}
-        <Link to="/reviews">Reviews</Link>|{" "}
-        <Link to="/secrets">Secrets</Link>|{" "}
-        <Link to="/quiz">Quiz</Link>|{" "}
-        <Link to="/berries">Berries</Link>|{" "}
-        <Link to="/contact">Contact</Link>
-      </nav> */}
 
       <Container maxWidth="lg">
         <LoginBar/>
@@ -126,7 +115,13 @@ function App() {
   const [store, dispatch] = useReducer(reducer, initialState);
   const [isLoading, setIsLoading] = useState(true);
 
+  const { loggedInUser } = store;
+
   useEffect(() => {
+    if (!loggedInUser) {
+      return;
+    }
+
     getPredictions()
       .then((predictions) =>
         dispatch({ type: "setPredictions", data: predictions })
@@ -138,7 +133,7 @@ function App() {
         dispatch({ type: "setCategories", data: categories })
       )
       .catch((error) => console.log(error));
-  }, []);
+  }, [loggedInUser]);
 
   // useEffect Hook is like componentDidMount, componentDidUpdate
   // we use it so that when page is updated we can load for 2 secs
