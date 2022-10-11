@@ -40,7 +40,7 @@ export default function Predictions() {
       ) : (
         <>
           <Typography>
-            Please login. There are {predictions.length} in the database.
+            Please login.
           </Typography>
         </>
       )}
