@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
 import { useGlobalState } from "../utils/StateContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Predictions() {
-
+    let navigate = useNavigate();
     const {store} = useGlobalState();
     const {predictions, loggedInUser } = store;
     if(!predictions) return "null";
@@ -18,6 +18,9 @@ export default function Predictions() {
                     </Link>
                 );
             })}
+           <button onClick={() => navigate("/predictions/new")}>
+            Add Prediction
+          </button>
         </div>
     )
 }

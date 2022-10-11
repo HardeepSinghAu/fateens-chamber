@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import { React, useState, useEffect, useReducer } from "react";
 import { StateContext } from "../utils/StateContext"
 import { getPredictions } from "../services/predictionServices";
+import { getCategories } from "../services/categoryServices";
 import Quiz from "./Quiz";
 import ContactHook from "./ContactHook";
 import BerriesHook from "./BerriesHook";
@@ -20,6 +21,7 @@ import JustBerry from "./JustBerry";
 import reducer from "../utils/StateReducer";
 import Predictions from "./Predictions";
 import PredictionDetails from "./PredictionDetails";
+import NewPrediction from "./NewPrediction";
 
 const sections = [
   {
@@ -93,6 +95,8 @@ function MainPage() {
         <Route path="berries/:name" element={<JustBerry />} />
         <Route path="predictions" element={<Predictions />} />
         <Route path="predictions/:id" element={<PredictionDetails />} />
+        <Route path="predictions/update/:id" element={<NewPrediction />} />
+        <Route path="predictions/new" element={<NewPrediction />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -109,6 +113,7 @@ function MainPage() {
 
 function App() {
   const initialState = {
+    categories: [],
     predictions: [],
     loggedInUser: null,
     auth: null,
@@ -120,6 +125,12 @@ function App() {
     getPredictions()
       .then((predictions) =>
         dispatch({ type: "setPredictions", data: predictions })
+      )
+      .catch((error) => console.log(error));
+
+    getCategories()
+      .then((categories) =>
+        dispatch({ type: "setCategories", data: categories })
       )
       .catch((error) => console.log(error));
   }, []);

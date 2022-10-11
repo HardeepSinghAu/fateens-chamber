@@ -1,6 +1,12 @@
 export default function reducer (state, action) {
 
     switch(action.type) {
+        case 'setCategories': {
+            return {
+                ...state,
+                categories: action.data
+            }
+        }
         case 'setPredictions': {
             return {
                 ...state,
