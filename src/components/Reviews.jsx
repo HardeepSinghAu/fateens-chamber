@@ -1,7 +1,7 @@
 import {React, useReducer} from "react";
 import ListItem from "./ListItem";
 import ReviewInput from "./ReviewInput";
-import reducer from "./utils/ReviewsReducer";
+import reducer from "../utils/ReviewsReducer";
 
 const initialReviews = [
   { title: "Mr. Duking", description: "I highly resepect Fateen. All the town citizens know about her." },

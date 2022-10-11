@@ -5,7 +5,7 @@ import Secrets from "./Secrets";
 // import Header from "./Header";
 import Footer from "./Footer";
 import { React, useState, useEffect, useReducer } from "react";
-import { StateContext } from "./utils/StateContext";
+import { StateContext } from "../utils/StateContext"
 import { getPredictions } from "../services/predictionServices";
 import Quiz from "./Quiz";
 import ContactHook from "./ContactHook";
@@ -17,8 +17,9 @@ import Home from "./Home";
 import NotFound from "./NotFound";
 import ThankYouPage from "./ThankYouPage";
 import JustBerry from "./JustBerry";
-import reducer from "./utils/StateReducer";
+import reducer from "../utils/StateReducer";
 import Predictions from "./Predictions";
+import PredictionDetails from "./PredictionDetails";
 
 const sections = [
   {
@@ -91,6 +92,8 @@ function MainPage() {
         <Route path="thanks" element={<ThankYouPage />} />
         <Route path="berries/:name" element={<JustBerry />} />
         <Route path="predictions" element={<Predictions />} />
+        <Route path="predictions/:id" element={<PredictionDetails />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
 

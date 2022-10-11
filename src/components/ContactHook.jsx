@@ -1,7 +1,7 @@
 // Functional component version
 
 import React, { useReducer } from "react";
-import reducer from "./utils/ContactReducer";
+import reducer from "../utils/ContactReducer";
 import MessageCard from "./MessageCard";
 import ColourChoicePanel from "./ColourChoicePanel";
 import { useNavigate } from "react-router-dom";
